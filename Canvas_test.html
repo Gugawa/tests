@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>CanvasTest</title>
+</head>
+<script>
+   function kolorki(){
+        var MyVar;
+        MyVar = setInterval(draw, 100);
+    }
+</script>
+<body onload="draw(); kolorki();">
+   <canvas id="can" height="650" width="525" style="float: left;">
+       Nie obsługujesz canvas.
+   </canvas>
+   
+   <canvas id="can2" height="600" width="600" style="float: left;">
+       Nie obsługujesz canvas.
+   </canvas>
+<script>
+    var canvasElem=document.getElementById('can');
+    var ctx=canvasElem.getContext('2d');  
+    
+    var canvas2Elem=document.getElementById('can2');
+    var ctx2=canvas2Elem.getContext('2d'); 
+    
+    ctx.translate(-60, 80);
+    ctx.rotate(Math.PI/-4,5);
+    
+    
+    function draw(){
+    
+        /*
+    var canvasElem=document.getElementById('can');
+    var ctx=canvasElem.getContext('2d'); 
+    ctx.translate(-60, 80);
+    ctx.rotate(Math.PI/-4,5);
+       */
+    
+    for (var i=0; i < 23; i++){
+        ctx.beginPath();
+        if (i<2) ctx.rect((i * 110), 10, 100, 100);
+        if (i>=3 && i<7) ctx.rect((i * 110 - 460), 120, 100, 100);
+        if (i>7 && 13) ctx.rect((i * 110 - 1040), 230, 100, 100);
+        if (i>13) ctx.rect((i * 110 - 2140), 340, 100, 100);
+        
+        
+        var col = 'rgb('+
+            Math.floor(Math.random()*256)+','+
+            Math.floor(Math.random()*256)+','+
+            Math.floor(Math.random()*256)+')';
+        
+        ctx.fillStyle = col;
+        ctx.fill();
+    }
+        ctx.closePath();
+        
+        ctx2.beginPath();
+        ctx2.globalAlpha = 0.4;
+        ctx2.shadowOffsetX = 15;
+        ctx2.shadowOffsetY = 15;
+        ctx2.shadowBlur = 10;
+        ctx2.shadowColor = "#CCCCCC";
+        ctx2.closePath();
+        
+        ctx2.beginPath();
+        ctx2.arc(280, 260, 100, 0, 2*Math.PI, false);
+        ctx2.fillStyle = "green";
+        ctx2.fill();
+        ctx2.closePath();
+        
+        ctx2.beginPath();
+        ctx2.arc(200, 360, 100, 0, 2*Math.PI, false);
+        ctx2.fillStyle = "red";
+        ctx2.fill();
+        ctx2.closePath();
+        
+        ctx2.beginPath();
+        ctx2.arc(340, 360, 100, 0, 2*Math.PI, false);
+        ctx2.fillStyle = "blue";
+        ctx2.fill();
+        ctx2.closePath();
+    }
+</script>
+
+</body>
+</html>
